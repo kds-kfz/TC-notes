@@ -1,0 +1,3 @@
+/root/TC/1.cmake_study/10.动态库与静态库进行链接/build/src/CMakeFiles/main.dir
+/root/TC/1.cmake_study/10.动态库与静态库进行链接/build/lib_testFunc/CMakeFiles/testFunc_shared.dir
+/root/TC/1.cmake_study/10.动态库与静态库进行链接/build/lib_testFunc/CMakeFiles/testFunc_static.dir

@@ -1,0 +1,5 @@
+[cmake]有没清理所有编译生成文件的clean命令
+故在统计目录建立Makefile，用于编译以及清除
+备注：
+该写法使用了2个CMakeLists.txt，这种写法是为了处理需要生成多个elf文件的情况，
+最外层的CMakeLists.txt用于掌控全局，使用add_subdirectory来添加要生成elf文件的源码目录。

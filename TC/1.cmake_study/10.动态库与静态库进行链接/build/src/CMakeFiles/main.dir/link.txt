@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/main.dir/main.c.o  -o ../../bin/main  -L/root/TC/1.cmake_study/10.动态库与静态库进行链接/lib -rdynamic -ltestFunc -Wl,-rpath,/root/TC/1.cmake_study/10.动态库与静态库进行链接/lib 

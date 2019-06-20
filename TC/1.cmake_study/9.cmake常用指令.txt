@@ -1,0 +1,191 @@
+Make常用命令 记录时间：2019/06/20
+
+这里介绍一下常用的命令（CMake 2.8 的命令可以在此查询）：
+
+1）project 命令
+
+命令语法：project(<projectname> [languageName1 languageName2 … ] )
+
+命令简述：用于指定项目的名称
+
+使用范例：project(Main)
+
+2）cmake_minimum_required命令
+
+命令语法：cmake_minimum_required(VERSION major[.minor[.patch[.tweak]]][FATAL_ERROR])
+
+命令简述：用于指定需要的 CMake 的最低版本
+
+使用范例：cmake_minimum_required(VERSION 2.8)
+
+3）aux_source_directory命令
+
+命令语法：aux_source_directory(<dir> <variable>)
+
+命令简述：用于将 dir 目录下的所有源文件的名字保存在变量 variable 中
+
+使用范例：aux_source_directory(. DIR_SRCS)
+
+4）add_executable 命令
+
+命令语法：add_executable(<name> [WIN32] [MACOSX_BUNDLE][EXCLUDE_FROM_ALL] source1 source2 … sourceN)
+
+命令简述：用于指定从一组源文件 source1 source2 … sourceN 编译出一个可执行文件且命名为 name
+
+使用范例：add_executable(Main ${DIR_SRCS})
+
+5）add_library 命令
+
+命令语法：add_library([STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL] source1source2 … sourceN)
+
+命令简述：用于指定从一组源文件 source1 source2 … sourceN 编译出一个库文件且命名为 name
+
+使用范例：add_library(Lib ${DIR_SRCS})
+
+6）add_dependencies 命令
+
+命令语法：add_dependencies(target-name depend-target1 depend-target2 …)
+
+命令简述：用于指定某个目标（可执行文件或者库文件）依赖于其他的目标。这里的目标必须是 add_executable、add_library、add_custom_target 命令创建的目标
+
+7）add_subdirectory 命令
+
+命令语法：add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
+
+命令简述：用于添加一个需要进行构建的子目录
+
+使用范例：add_subdirectory(Lib)
+
+8）target_link_libraries命令
+
+命令语法：target_link_libraries(<target> [item1 [item2 […]]][[debug|optimized|general] ] …)
+
+命令简述：用于指定 target 需要链接 item1 item2 …。这里 target 必须已经被创建，链接的 item 可以是已经存在的 target（依赖关系会自动添加）
+
+使用范例：target_link_libraries(Main Lib)
+
+9）set 命令
+
+命令语法：set(<variable> <value> [[CACHE <type><docstring> [FORCE]] | PARENT_SCOPE])
+
+命令简述：用于设定变量 variable 的值为 value。如果指定了 CACHE 变量将被放入 Cache（缓存）中。
+
+使用范例：set(ProjectName Main)
+
+10）unset 命令
+
+命令语法：unset(<variable> [CACHE])
+
+命令简述：用于移除变量 variable。如果指定了 CACHE 变量将被从 Cache 中移除。
+
+使用范例：unset(VAR CACHE)
+
+11）message 命令
+
+命令语法：message([STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR] “message todisplay”…)
+
+命令简述：用于输出信息
+
+使用范例：message(“Hello World”)
+
+12）include_directories 命令
+
+命令语法：include_directories([AFTER|BEFORE] [SYSTEM] dir1 dir2 …)
+
+命令简述：用于设定目录，这些设定的目录将被编译器用来查找 include 文件
+
+使用范例：include_directories(${PROJECT_SOURCE_DIR}/lib)
+
+13）find_path 命令
+
+命令语法：find_path(<VAR> name1 [path1 path2 …])
+
+命令简述：用于查找包含文件 name1 的路径，如果找到则将路径保存在 VAR 中（此路径为一个绝对路径），如果没有找到则结果为 <VAR>-NOTFOUND。默认的情况下，VAR 会被保存在 Cache 中，这时候我们需要清除 VAR 才可以进行下一次查询（使用 unset 命令）。
+
+使用范例：
+
+find_path(LUA_INCLUDE_PATH lua.h${LUA_INCLUDE_FIND_PATH})
+
+if(NOT LUA_INCLUDE_PATH)
+
+   message(SEND_ERROR "Header file lua.h not found")
+
+endif()
+
+14）find_library 命令
+
+命令语法：find_library(<VAR> name1 [path1 path2 …])
+
+命令简述：用于查找库文件 name1 的路径，如果找到则将路径保存在 VAR 中（此路径为一个绝对路径），如果没有找到则结果为 <VAR>-NOTFOUND。一个类似的命令 link_directories 已经不太建议使用了
+
+15）add_definitions 命令
+
+命令语法：add_definitions(-DFOO -DBAR …)
+
+命令简述：用于添加编译器命令行标志（选项），通常的情况下我们使用其来添加预处理器定义
+
+使用范例：add_definitions(-D_UNICODE -DUNICODE)
+
+16）execute_process 命令
+
+命令语法：
+
+execute_process(COMMAND <cmd1>[args1...]]
+
+                  [COMMAND <cmd2>[args2...] [...]]
+
+                  [WORKING_DIRECTORY<directory>]
+
+                  [TIMEOUT <seconds>]
+
+                  [RESULT_VARIABLE<variable>]
+
+                  [OUTPUT_VARIABLE<variable>]
+
+                  [ERROR_VARIABLE<variable>]
+
+                  [INPUT_FILE <file>]
+
+                  [OUTPUT_FILE <file>]
+
+                  [ERROR_FILE <file>]
+
+                  [OUTPUT_QUIET]
+
+                  [ERROR_QUIET]
+
+                  [OUTPUT_STRIP_TRAILING_WHITESPACE]
+
+                  [ERROR_STRIP_TRAILING_WHITESPACE])
+
+命令简述：用于执行一个或者多个外部命令。每一个命令的标准输出通过管道转为下一个命令的标准输入。WORKING_DIRECTORY 用于指定外部命令的工作目录，RESULT_VARIABLE用于指定一个变量保存外部命令执行的结果，这个结果可能是最后一个执行的外部命令的退出码或者是一个描述错误条件的字符串，OUTPUT_VARIABLE 或者 ERROR_VARIABLE 用于指定一个变量保存标准输出或者标准错误，OUTPUT_QUIET 或者 ERROR_QUIET 用于忽略标准输出和标准错误。
+
+使用范例：execute_process(COMMAND ls)
+
+18）file 命令
+
+命令简述：此命令提供了丰富的文件和目录的相关操作（这里仅说一下比较常用的）
+
+使用范例：
+
+# 目录的遍历
+
+# GLOB 用于产生一个文件（目录）路径列表并保存在variable 中
+
+# 文件路径列表中的每个文件的文件名都能匹配globbing expressions（非正则表达式，但是类似）
+
+# 如果指定了 RELATIVE 路径，那么返回的文件路径列表中的路径为相对于 RELATIVE 的路径
+
+# file(GLOB variable [RELATIVE path][globbing expressions]...)
+
+ 
+
+# 获取当前目录下的所有的文件（目录）的路径并保存到 ALL_FILE_PATH 变量中
+
+file(GLOB ALL_FILE_PATH ./*)
+
+# 获取当前目录下的 .h 文件的文件名并保存到ALL_H_FILE 变量中
+
+# 这里的变量CMAKE_CURRENT_LIST_DIR 表示正在处理的 CMakeLists.txt 文件的所在的目录的绝对路径（2.8.3 以及以后版本才支持）
+
+file(GLOB ALL_H_FILE RELATIVE${CMAKE_CURRENT_LIST_DIR} ${CMAKE_CURRENT_LIST_DIR}/*.h)

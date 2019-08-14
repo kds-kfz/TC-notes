@@ -1,0 +1,6 @@
+K 13
+svn:externals
+V 76
+TC_testVendor svn://192.168.30.219/testVendor/binexport/REL-2.0.1-UBT-16.04
+
+END

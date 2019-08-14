@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GBK"?>
+<Transaction>
+    <EBHead>                                                        <!-- ESB 报文头 -->
+        <RequesterID></RequesterID>                                 <!-- 请求放标识  清填写 ECM 分配的系统号 -->
+        <ResponderId>ECM001</ResponderId>                           <!-- 接收方标识  默认值 -->
+        <ESBServiceId></ESBServiceId>                               <!-- ESB 服务编码：暂空 -->
+        <MessageType>1</MessageType>                                <!-- 消息类型 -->
+        <ESBReqTimestamp>20080519140000</ESBReqTimestamp>           <!-- 请求处理时间戳 按实际填写 -->
+        <ESBRspTimestamp></ESBRspTimestamp>                         <!-- 应答处理时间戳 暂空 -->
+        <Version>1.0</Version>                                      <!-- 报文版本 默认值 -->
+        <Reserved></Reserved>                                       <!-- 保留域：暂空 -->
+    </EBHead>
+    <ESBBody>                                                       <!-- ESM 报文体 -->
+        <AppRequest>                                                <!-- 请求报文 -->
+            <AppReqHead>                                            <!-- 请求报文头 -->
+                <TradeCode>QUERY2</TradeCode>                       <!-- 交易码 不能修改 -->
+                <ReqSerialNo></ReqSerialNo>                         <!-- 请求方报文流水：暂空 -->
+                <TradeDate>20080519</TradeDate>                     <!-- 交易日期 按实际填写 -->
+                <TradeTime>140000</TradeTime>                       <!-- 交易时间 按实际填写 -->
+                <TradeSource>
+                    <EnterpriseId>BOCOM</EnterpriseId>              <!-- 企业标识 默认值 -->
+                    <TradeChannel>9</TradeChannel>                  <!-- 交易渠道 默认值 -->
+                    <SubBankNo></SubBankNo>                         <!-- 分行号 清填写省份行 或 直属行份行号，总行填 01315999999 -->
+                    <OraganNo></OraganNo>                           <!-- 机构号 按实际填写或留空 -->
+                    <TellerNo></TellerNo>                           <!-- 柜员号 按实际填写或默认值 -->
+                    <TermNote>tty001</TermNote>                     <!-- 终端号 按实际填写或默认值 -->
+                    <ForeTradeCode></ForeTradeCode>                 <!-- 前台交易代码 暂空 -->
+                    <TradeNote></TradeNote>                         <!-- 交易备注 可选 -->
+                </TradeSource>
+                <AuthInfo>
+                    <AuthLevel></AuthLevel>                         <!-- 授权级别：暂空 -->
+                    <Supervisor1></Supervisor1>                     <!-- 主管1：暂空 -->
+                    <Supervisor2></Supervisor2>                     <!-- 主管2：暂空 -->
+                    <Supv1Passwd></Supv1Passwd>                     <!-- 主管1密码：暂空 -->
+                    <Supv2Passwd></Supv2Passwd>                     <!-- 主管2密码：暂空 -->
+                    <AuthReason></AuthReason>                       <!-- 授权原因：暂空 -->
+                </AuthInfo>
+                <Reserved></Reserved>                               <!-- 保留域：暂空 -->
+            </AppReqHead>
+            <AppReqBody>                                            <!-- 请求报文体 -->
+                <CommonReq>                                         <!-- 公共请求要素 -->    
+                    <RequestLevel>1</RequestLevel>                  <!-- 请求级别 默认值 -->
+                    <TotalSize>0</TotalSize>                        <!-- 文件总大小 按实际填写 -->
+                    <EventID></EventID>                             <!-- 事件号 必填，32位以内，每笔交易不能不能重复 -->
+                    <EventType>2</EventType>                        <!-- 事件类型 默认值 -->
+                </CommonReq>
+                <QueryInfoList>                                     <!-- 存储文档列表 -->
+                    <QueryInfo>                                     <!-- 存储文档 -->
+                        <Key>DOC_ID</Key>                           <!-- 文档 ID 默认值 -->
+                        <Value></Value>                             <!-- 属性键值 必填，天文档 ID 的值 -->
+                        <MatchType>=</MatchType>                    <!-- 属性匹配 默认值 -->
+                    </QueryInfo>                                    
+                    <OperType></OperType>                           <!-- 切换操作交易码，对应到切割模板 如果不切割则为空 -->
+                    <PageInfo>                                      
+                        <BeginPage>1</BeginPage>                    <!-- 影像文档起始页码 出事查询时填 1 -->
+                        <PageSize>100</PageSize>                    <!-- 影像文档查询页数 切割固定填 1 如果超过文档 ID 实际 -->
+                    </PageInfo>                                     
+                </QueryInfoList>                                    
+            </AppReqBody>
+        </AppRequest>
+    </ESBBody>
+</Transaction>

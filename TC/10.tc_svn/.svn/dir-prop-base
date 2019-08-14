@@ -1,0 +1,5 @@
+K 12
+svn:extenals
+V 52
+common_src svn://110.168.1.239/common_src/trunk/src/
+END

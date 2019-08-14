@@ -1,0 +1,150 @@
+﻿本笔记记录了win10余cnetos两系统下，svn服务器与客户端相互检出等基本功能
+由于涉及的坑比较多，这里会一一列举，保证操作能够顺利执行。
+---------------------------------------
+centos系统
+第一部分
+1、下载svn
+yum install -y subversion
+2、创建svn仓库
+svnadmin create /root/TC/7.svn_serve/1.tc_repertory
+注意这里需要写绝对路径，最后一级目录则是创建的创库目录
+3、增加用户
+vim /root/TC/7.svn_serve/1.tc_repertory/conf/passwd
+[users]
+kfz = 123
+备注：左边是用户名，右边是密码
+4、打开服务配置
+vim /root/TC/7.svn_serve/1.tc_repertory/conf/svnserve.conf
+anon-access = read
+auth-access = write
+password-db = passwd
+authz-db = authz
+5、修改权限
+vim /root/TC/7.svn_serve/1.tc_repertory/conf/authz.conf
+[groups]
+admin = root,kfz
+[1.tc_repertory:/]
+@admin = rw
+* = r
+备注：次方式比较灵活，指定某仓库下分组用户拥有特定权限
+或者
+[/]
+* = rw
+6、查看防火墙
+service iptable status
+7、临时关闭防火墙
+servcie iptables stop
+8、永久关闭防火墙
+chkconfig iptables off 
+8、启动 svn 服务，端口默认 3690
+svnserve -d -r /root/TC/7.svn_serve/
+备注：这里只需要启动刀片仓库的上级目录即可
+9、启动 svn 服务，指定端口
+svnserve -d -r /root/TC/7.svn_serve/ --listen-port 8080
+10、测试是否启动成功
+检出到当前目录
+svn co svn://localhost/1.tc_repertory
+检出到 8.svn_clinet 目录
+svn co svn://localhost:8080/1.tc_repertory ./8.svn_clinet
+成功会显示：取出版本 0.
+11、在服务端可以使用如下命令来获取版本库的UUID
+svnlook uuid  /root/TC/7.svn_serve/1.tc_repertory/
+12、在客户端，如果没有在本地建立工作拷贝，我们还可以使用svn命令通过网络来获取版本库的UUID
+svn info http://192.168.56.130/7.svn_serve/1.tc_repertory
+13、在客户端，checkout代码就在本地建立了工作拷贝，根据这份工作拷贝使用如下命令来获取当前版本库的UUID
+svn info /root/TC/7.svn_serve/8.svn_clinet/1.tc_repertory/
+备注：目录 8.svn_clinet 是检出目录
+问题：svn: 版本库的 UUID“f3f0e18f-34d8-428c-a264-b41088fde13a”与期望的 UUID“e3f3ba3a-3fcd-4c2f-b5b7-15254758b93d”不匹配
+此时万万不可修改仓库的uuid号，只需将检出目录下的.svn删除，再重新检出即可
+14、设置SVN的Hooks，钩子文件
+在远程客户端进行commit操作时，服务端的svn会自动操作update
+vim /root/TC/7.svn_serve/1.tc_repertory/hooks/post-commit，以下是内容
+#!/bin/sh
+REPOS="$1"
+REV="$2"
+export LANG=en_US.UTF-8
+SVN_PATH=/root/TC/7.svn_serve
+WEB_PATH=/root/TC/8.svn_client
+SVN_USER=kfz
+SVN_PASS=123
+LOG_PATH=/tmp/svn.log
+echo `date "+%Y-%m-%d %H:%M:%S"` >> $LOG_PATH
+echo `whoami`,$REPOS,$REV >> $LOG_PATH
+$SVN_PATH/svn update $WEB_PATH --username $SVN_USER --password $SVN_PASS --no-auth-cache >> $LOG_PATH
+exit 0
+15、给予post-commit操作权限
+chmod a+x /root/TC/7.svn_serve/1.tc_repertory/hooks/post-commit
+16、checkout获取项目
+svn checkout svn://192.168.56.130:3690/svn --username kfz --password 123 /root/TC/8.svn_client
+备注：8.svn_client是客户端已经在开发的目录
+17、在客户端检出的svn仓库中新建文件 Readme.md
+svn add Readme.md
+svn commit -m "this is a first file."
+出现：
+传输文件数据.
+提交后的版本为 1。
+
+第二部分
+1、版本库创建好后，在客户机建立 8.svn_client 目录
+mkdir 8.svn_client
+2、检出版本库到 8.svn_client 目录下
+svn co svn://localhost/1.tc_repertory ./8.svn_client
+cd 8.svn_client
+ls 8.svn_client目录下什么也没有
+3、添加新工程，提交到版本库
+在 8.svn_client目录下添加工程文件夹，建立testSVN 文件夹
+mkdir testSVN;cd testSVN
+binexport  branches  intro  tags  trunk
+查看当前工作副本的文件，？不在svn的控制中，属于本地文件，远程的svn服务器版本库中本并有
+svn status 
+添加当前目录下所有文件和目录到项目中
+svn add testSVN
+提交到远程svn服务器上
+svn commit -m "工程初始化成功"
+svn status 此时什么也没有，说明工作副本与远程svn服务器上的一致
+第二种是客户端导入版本库
+svn import testSVN svn://localhost/1.tc_repertory/testSVN -m "向版本库添加testSVN项目"
+备注：testSVN 目录下存放的是 binexport  branches  intro  tags  trunk 这些文件
+
+第三部分：参考分支操作
+
+第四部分：导入依赖库
+如果基础库版本更新了，更新版本
+（1）首先进入所查看的程序目录，如trunk，运行命令svn propedit svn:externals vendor，可以查看此程序的基础库版本名称
+svn propedit svn:externals vendor --editor-cmd=vim
+此时会打开svn-prop.tmp文件，输入一下内容
+TilImageLib svn://192.168.30.219/TilImageLib/binexport/REL-3.0.0-WIN-XP
+保存退出后执行，svn up vendor，即可
+备注：落地文件叫TilImageLib，执行后结果是，拉取远程svn服务器上的这库到 vendor/TilImageLib 目录下
+（2）同理设置vendorsrc指向
+svn propedit svn:externals vendorsrc --editor-cmd=vim
+此时会打开svn-prop.tmp文件，输入一下内容
+common_src svn://192.168.30.219/common_src/tags/REL-1.5.1-ALL
+保存退出后执行，svn up vendorsrc，即可
+以下是其他操作：
+（2）用命令svn ls svn://192.168.30.219/TilImageLib/binexport可以查看所有基础库的版本名称
+（3）将自己的程序工程基础库版本名称改对后，运行命令svn up vendor更新本地基础库版本
+（4）如果需要将版本上传svn，运行svn ci -m"modify TilImageLib version" vendor
+（5）链接的版本库版本需要和makefile文件中的一致
+
+第五部分：打标签
+
+第六部分：命令组合操作
+1、查看日志从838到873之间仅含有testor的日志，最多显示两行
+svn log -r 838:873|grep -A 2 -w testor
+2、查看某一版本所修改的文件列表及说明
+svn log -r 873 -v
+3、查出代码的每一行是谁写/改的
+svn blame 文件名
+4、指定查看开发者testor，1-100行代码
+svn blame -L 1,100 文件名 |grep -w testor
+5、查看本地拷贝的工作目录与远程svn仓库上第50版本的1.txt 文件差异
+svn diff -r 50 1.txt
+6、查看远程svn仓库第50版本相对于第30版本1.txt文件差异
+svn diff -r 50:30 1.txt
+
+++++++++++++++++++++++++++++++++++++
+
+
+
+win10系统

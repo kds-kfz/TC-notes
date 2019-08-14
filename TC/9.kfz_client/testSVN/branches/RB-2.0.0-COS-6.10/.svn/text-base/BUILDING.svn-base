@@ -1,0 +1,21 @@
+====================================================
+北京天创征腾信息科技有限公司 图像处理团队 subversion版本库
+====================================================
+
+顶层BUILDING文件
+
+   欢迎你！代码考古者！需要对项目的源代码进行重新构建，辛苦了！
+
+   本文档就是你的福音啊～～～请看如何进行构建吧：
+
+//以下为例子：
+Prerequisites:
+	*Oracle 9.6i (perhaps later versions but that configuration's not tested)
+	*GCC 2.9.6
+Building:
+	./configure [--with-oracle=<dir>]
+	make
+	make test
+	make install
+More info:
+	docs/building.html

@@ -1,0 +1,79 @@
+id: 2-1.0-15.r15/0
+type: dir
+pred: 2-1.0.r14/1529
+count: 10
+text: 14 1205 311 311 242e665c1aaefb01bc4d211fd2e2b801
+props: 11 1304 69 0 889c4eef9eb34260fc25fd5aa7c1342c
+cpath: /testSVN/tags/RB-2.0.0-COS-6.10
+copyfrom: 14 /testSVN/trunk
+minfo-cnt: 1
+minfo-here: y
+
+PLAIN
+K 17
+RB-2.0.0-COS-6.10
+V 18
+dir 2-1.0-15.r15/0
+END
+ENDREP
+id: 17-1.0.r15/327
+type: dir
+pred: 17-1.0.r1/7674
+count: 1
+text: 15 263 51 51 0417f7bc5ccf5eb98d589f564fad7b4f
+cpath: /testSVN/tags
+copyroot: 0 /
+minfo-cnt: 1
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 19
+dir 13-1.0.r10/2035
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 18
+dir 17-1.0.r15/327
+K 5
+trunk
+V 18
+dir 2-1.0.r14/1529
+END
+ENDREP
+id: 0-1.0.r15/682
+type: dir
+pred: 0-1.0.r14/1954
+count: 14
+text: 15 487 182 182 2f355e57f59b2de81fe9be78a68fcb2c
+cpath: /testSVN
+copyroot: 0 /
+minfo-cnt: 2
+
+PLAIN
+K 7
+testSVN
+V 17
+dir 0-1.0.r15/682
+END
+ENDREP
+id: 0.0.r15/891
+type: dir
+pred: 0.0.r14/2165
+count: 15
+text: 15 839 39 39 476480df2596210e94c9bf333c0f81a9
+cpath: /
+copyroot: 0 /
+minfo-cnt: 2
+
+2-1._0.t14-f add-dir false false /testSVN/tags/RB-2.0.0-COS-6.10
+14 /testSVN/trunk
+
+891 1035

@@ -1,0 +1,77 @@
+10
+
+dir
+873
+svn://192.168.30.219/testSVN
+svn://192.168.30.219/testSVN
+
+
+
+2019-07-25T14:42:07.779583Z
+873
+testor
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+01aa90a8-ee3a-416f-89ad-5b7733e9b3fd
+
+svn初始化构建
+dir
+
+trunk
+dir
+
+branches
+dir
+
+binexport
+dir
+
+intro
+file
+
+
+
+
+2019-07-26T03:37:59.748901Z
+bd093e7b306f28c877e2e1da930ed020
+2019-07-22T08:22:09.839166Z
+780
+testor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6056
+
+tags
+dir
+

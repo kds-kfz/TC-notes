@@ -1,0 +1,63 @@
+PLAIN
+END
+ENDREP
+id: 17-1.0.r17/17
+type: dir
+pred: 17-1.0.r16/1055
+count: 3
+text: 17 0 4 4 2d2977d1c96f487abe4a1e202dd03b4e
+cpath: /testSVN/tags
+copyroot: 0 /
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 19
+dir 13-1.0.r10/2035
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 17
+dir 17-1.0.r17/17
+K 5
+trunk
+V 18
+dir 2-1.0.r14/1529
+END
+ENDREP
+id: 0-1.0.r17/354
+type: dir
+pred: 0-1.0.r16/1412
+count: 16
+text: 17 160 181 181 3ee4cc316b68c7d802a6888a64b9315b
+cpath: /testSVN
+copyroot: 0 /
+minfo-cnt: 1
+
+PLAIN
+K 7
+testSVN
+V 17
+dir 0-1.0.r17/354
+END
+ENDREP
+id: 0.0.r17/563
+type: dir
+pred: 0.0.r16/1623
+count: 17
+text: 17 511 39 39 348f5fd2776345dbb313cf87a3b7ea22
+cpath: /
+copyroot: 0 /
+minfo-cnt: 1
+
+2-1.0-15.r16/708 delete-dir false false /testSVN/tags/RB-2.0.0-COS-6.10
+
+
+563 707

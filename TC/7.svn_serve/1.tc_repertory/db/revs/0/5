@@ -1,0 +1,166 @@
+id: 5-2.0.r5/0
+type: file
+pred: 5-2.0.r4/0
+count: 3
+text: 3 0 310 534 a51655178b1eda56662cb9fdc8511ef3 9f8e477080a2da631158c0d9d1a38e46548aaeee 4-4/_6
+cpath: /testSVN/trunk/src/project0/src/array.c
+copyroot: 0 /
+
+PLAIN
+K 7
+array.c
+V 15
+file 5-2.0.r5/0
+END
+ENDREP
+id: u-1.0.r5/263
+type: dir
+pred: u-1.0.r4/265
+count: 4
+text: 5 213 37 37 c20dc848ad3e29933a94fd1add0578a1
+cpath: /testSVN/trunk/src/project0/src
+copyroot: 0 /
+
+PLAIN
+K 3
+bin
+V 17
+dir v-1.0.r1/5665
+K 3
+cfg
+V 17
+dir s-1.0.r1/5483
+K 3
+src
+V 16
+dir u-1.0.r5/263
+END
+ENDREP
+id: r-1.0.r5/532
+type: dir
+pred: r-1.0.r4/534
+count: 4
+text: 5 423 96 96 57cfb374a6b41f55d7880e501cc67372
+cpath: /testSVN/trunk/src/project0
+copyroot: 0 /
+
+PLAIN
+K 12
+distribution
+V 17
+dir l-1.0.r1/5338
+K 8
+project0
+V 16
+dir r-1.0.r5/532
+K 8
+test_dir
+V 17
+dir w-1.0.r1/6005
+END
+ENDREP
+id: k-1.0.r5/817
+type: dir
+pred: k-1.0.r4/819
+count: 4
+text: 5 688 116 116 c5509bd1472b4de2e6fc30dcc591c899
+cpath: /testSVN/trunk/src
+copyroot: 0 /
+
+PLAIN
+K 8
+BUILDING
+V 18
+file y-1.0.r1/6433
+K 8
+GLOSSARY
+V 18
+file 4-1.0.r1/3423
+K 6
+README
+V 19
+file 11-1.0.r1/6700
+K 4
+data
+V 17
+dir x-1.0.r1/6354
+K 2
+db
+V 17
+dir 8-1.0.r1/3690
+K 3
+doc
+V 17
+dir 9-1.0.r1/4803
+K 3
+src
+V 16
+dir k-1.0.r5/817
+K 6
+vendor
+V 18
+dir 10-1.0.r1/6618
+K 9
+vendorsrc
+V 17
+dir 7-1.0.r1/3606
+END
+ENDREP
+id: 2-1.0.r5/1288
+type: dir
+pred: 2-1.0.r4/1291
+count: 4
+text: 5 966 309 309 7e21e04fe6ad2811e2136c7b9fa2a069
+cpath: /testSVN/trunk
+copyroot: 0 /
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 18
+dir 13-1.0.r1/7336
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 18
+dir 17-1.0.r1/7674
+K 5
+trunk
+V 17
+dir 2-1.0.r5/1288
+END
+ENDREP
+id: 0-1.0.r5/1628
+type: dir
+pred: 0-1.0.r4/1631
+count: 4
+text: 5 1435 180 180 f4beabb4b8ae8ab9aa4cf2a608b927f9
+cpath: /testSVN
+copyroot: 0 /
+
+PLAIN
+K 7
+testSVN
+V 17
+dir 0-1.0.r5/1628
+END
+ENDREP
+id: 0.0.r5/1822
+type: dir
+pred: 0.0.r4/1825
+count: 5
+text: 5 1770 39 39 5584e132b704aa95ddbda8ce4079e01b
+cpath: /
+copyroot: 0 /
+
+5-2.0.t4-4 modify-file true false /testSVN/trunk/src/project0/src/array.c
+
+
+1822 1951

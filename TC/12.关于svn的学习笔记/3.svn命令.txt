@@ -1,0 +1,201 @@
+﻿1、第一次检出工程，使用checkout
+如：大字符集OCR  svn://192.168.30.219/ChOCR/
+svn checkout svn://192.168.30.219/ChOCR/
+
+2、以后每次更新之前，先update
+svn update
+
+3、查看文件夹内容状态
+svn status
+
+4、往版本库中文件进行操作
+添加新的文件
+svn add file
+例如：
+  svn add test.txt     //(添加test.txt)
+　svn add *.cpp        //(添加当前目录下所有的cpp文件)
+
+删除文件
+　　svn delete [--force] file
+例如：svn rm –force test.txt
+提交：svn ci –m”ci test.txt”test.txt
+简写：svn (del, remove, rm)
+
+5、将上述改动的文件提交到版本库
+　　svn commit -m “LogMessage“ [file]
+例如：svn commit -m “add test.txt “ test.txt
+简写：svn ci
+
+注意：
+1、上传之前要先清干净，删除不必要添加的文件；
+2、so文件需要单独添加。
+
+6、创建tags和branches
+svn copy –m “info” PATH PATH
+例如：svn cp –m “creating v1.0.0.0branches” svn://192.168.30.219/ChOCR/trunk svn://192.168.30.219/ChOCR/branches/RB-1.0.3-UBT-12.04
+注意：创建branches时候，linux下面要修改readme函数，用于重新更新readme文件的内容；windows版本需要修改rc文件
+
+7、从branches合并到trunk
+（1） 切换到trunk目录
+（2） 将branch合并到本地trunk
+yuanbaoxi@ubuntu:~/softdev/ubuntuprojects/ChOCR/trunk/src/TC_ComOCR/src$ svn merge svn://192.168.30.219/ChOCR/branches/RB-1.1.0-WIN-XP/src/TC_ComOCR/src
+（3） 确认无误后，提交到svn的trunk
+yuanbaoxi@ubuntu:~/softdev/ubuntuprojects/ChOCR/trunk/src/TC_ComOCR/src$ svn ci -m "merge branch RB-1.1.0-WIN-XP to trunk"
+
+8、如果基础库版本更新了，更新版本
+（1）首先进入所查看的程序目录，如trunk，运行命令svn propedit svn:externals vendor，可以查看此程序的基础库版本名称
+（2）用命令svn ls svn://192.168.30.219/TilImageLib/binexport可以查看所有基础库的版本名称
+（3）将自己的程序工程基础库版本名称改对后，运行命令svn up vendor更新本地基础库版本
+（4）如果需要将版本上传svn，运行svn ci -m"modify TilImageLib version" vendor
+（5）链接的版本库版本需要和makefile文件中的一致
+
+9、含有svn版本信息的文件打包成tar，则不会带有版本信息
+命令是：tar --exclude-vcs -cvzf name.tar.gz file
+
+10、解决冲突
+svn resolve --accept working TC_ComOCR.cpp
+svn revert TC_ComOCR.cpp
+
+11、将branches分支版本merge回trunk中
+例如将branches/TRY-ME-DOC-1/src中代码merge回trunk/src中
+（1）co或者up，trunk中代码
+（2）cd进入到要merge的目的地本地位置，cd到trunk/src中
+（3）svn f svn://192.168.30.219/ChOCR/branches/TRY-ME-DOC-1/src/
+（4）操作上述命令后，branches中的代码merge回trunk中的本地了
+（5）在trunk中测试，编译测试通过无误后，在提交，svn ci。
+
+svn checkout [-r m] path [foldername]
+例如：svn checkout svn://110.168.1.39/yqdz 
+　简写：svn co
+上述命令中的m为版本号
+
+Linux命令行下显示工作拷贝信息
+    svn  info [foldername]
+    例如：svn info cdbank
+
+
+Linux命令行下往版本库中添加新的文件
+　  svn add file
+　　例如：svn add test.txt(添加test.txt)
+　　svn add *.cpp(添加当前目录下所有的cpp文件)
+
+Linux命令行下删除文件
+　　svn delete [--force] file
+　　例如：svn rm –force test.txt
+　　提交：svn ci –m”ci test.txt”test.txt
+　　简写：svn (del, remove, rm)
+
+Linux命令行下将改动的文件提交到版本库
+　　svn commit -m “LogMessage“ [file]
+　　例如：svn commit -m “add test.txt “ test.txt
+　　简写：svn ci
+
+Linux命令行下查看日志
+　　svn log [-v] [foldername] [|more]
+　　例如：svn log cdbank 显示这个目录的所有修改记录，及其版本号的变化
+查看日志前需执行 svn up
+      svn log –-stop-on-copy
+
+
+Linux命令行下更新到某个版本
+svn update [-r m] [file]
+上述命令中的m为版本号
+　　svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。
+　　例如：svn update -r 10 cdbank(将版本库中的文件cdbank还原到版本10)		
+　　简写：svn up
+【A:添加新文件；U：已更新；D：已删除；G：与本地拷贝已合并；C：冲突】
+
+
+
+Linux命令行下查看文件或者目录状态
+　　1)svn status [foldername](目录下的文件和子目录的状  	态，正常状态不显示)
+　　【?：不在svn的控制中;M：内容被修改;C：发生冲突;A：预定加入到版本库;K：被锁定；X：externals设置】
+　　2)svn status -v [foldername](显示文件和子目录状态)
+　　第一列保持相同，第二列显示工作版本号，第三和第四列显示最后一次修改的版本号和修改人。
+　　注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。
+　　简写：svn st
+
+
+Linux命令行下查看逐行历史
+　　svn blame file
+　　例如：svn blame file.txt 显示每个文件中每行最后版本及改动人
+
+
+Linux命令行下比较差异
+　　svn diff file(将修改的文件与本机最后更新版本比较)
+　　例如：svn diff cdbank
+　　svn diff -r m:n file(对版本m和版本n比较差异)
+
+
+Linux命令行下重命名文件
+      svn move preFile  File
+      例如：svn move Time.java Clock.java
+ 
+
+Linux命令行下的加锁/解锁
+　　svn lock -m “LockMessage“ [--force] file
+　　例如：svn lock -m “lock test file“ test.txt
+　　svn unlock PATH
+
+方法一：
+移除冲突标记，修改文件
+svn resolved file
+svn ci –m ”info” file
+方法二：
+复制 file.mine内容
+svn revert file
+修改文件
+svn ci –m “info” file
+
+
+Linux命令行下创建tags和branches
+      svn copy –m “info” PATH PATH
+      例如：svn cp –m “creating v1.0.0.0tag” svn://192.168.30.219/ChOCR/trunk svn://192.168.30.219/ChOCR/tags/RB-1.0.3-UBT-12.04
+      简写： svn cp
+ 
+
+Linux命令行下合并分支
+　　svn merge PATH@M PATH@N
+      例如：svn merge svn://110.168.1.39:8443/CONF/trunk@100 svn://110.168.1.39/CONF/branches/confv1.0.0.0110712
+
+
+Linux命令行下还原
+      svn revert file
+      例如：svn revert test.txt
+
+ 
+Linux命令行下externals
+      svn propset svn:externals “foldername PATH” foldername
+      例如：svn propset svn:externals “test svn://110.168.1.39:8443/CONF/trunk/source” vendor
+      简写：svn ps
+设置完成后 svn up->svn ci
+
+Linux命令行下导出
+      svn export [-r m] path [foldername]
+　例如：svn exprot svn://110.168.1.39/yqdz 
+
+
+
+subversion是版本控制系统. 虽然现在还有git. 但做为集中研发的模式, subversion还是适用的.
+(虽然subversion对很多人来说已经不再陌生, 但毕竟江山代有人才出嘛, 新人还是会出来的...)
+1. 在你本地的改动未提交到版本库的时候, 你想恢复之前的修改. 可以
+svn revert xxx
+此改动将撤销你的修改，恢复之前的状态
+2. svn update -r N    (N未某个版本代码, update会将本地的修改更新到某个版本, 但**却无法提交到版本库**)
+举个例子，假如你现在的版本是 100. 你想退回到99. 那么用
+svn update -r 99 确实能让你回到99这个版本. 但是版本库里最新的还是100. 而你无法svn commit本地的99版本来使得版本库重新回到99这个版本.
+(所以，无法理解这个命令的用处，因为你只能看到改动...)
+3. 正确的回退的方法是 用 svn merge. 类似
+svn merge -r100:99 .      ("."是要的, 然后再 svn commit -m 'revert to version 99')
+(如果版本之间相差1, 还可以用svn merge -c -100 .)
+4. 用svn export代码，再覆盖的方法并不可取...如果源代码很多呢?
+举个例子,   xxx/ 这个目录如果包含了几千个文件, 而从99版本到100版本变更了其中几十个处于不同子目录的文件. 那么export xxx/，然后拷贝覆盖确实不适合...
+5.  根据svn的官方资料，似乎更合适的方法是 svn copy. 可以从某个版本拷贝出来.
+(但似乎是针对已被删除的文件和目录适合，如果改文件或某个目录里的一些文件只是修改好像有点问题. 会告诉你目录已存在..不知道是否是我操作有问题...)
+
+
+查看所有的日志
+svn log -v [路径] -r版本号1:版本号2
+
+查看某两个版本的区别
+svn diff -r r版本号1:版本号2

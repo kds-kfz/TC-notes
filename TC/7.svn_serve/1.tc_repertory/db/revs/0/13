@@ -1,0 +1,118 @@
+PLAIN
+K 13
+svn:externals
+V 1
+
+
+END
+ENDREP
+id: 10-1.0.r13/42
+type: dir
+pred: 10-1.0.r12/114
+count: 2
+props: 13 0 29 0 ec937d0cc0e97fc50db0480c07c69dd9
+cpath: /testSVN/trunk/vendor
+copyroot: 0 /
+
+PLAIN
+K 8
+BUILDING
+V 18
+file y-1.0.r1/6433
+K 8
+GLOSSARY
+V 18
+file 4-1.0.r1/3423
+K 6
+README
+V 19
+file 11-1.0.r1/6700
+K 4
+data
+V 17
+dir x-1.0.r1/6354
+K 2
+db
+V 17
+dir 8-1.0.r1/3690
+K 3
+doc
+V 17
+dir 9-1.0.r1/4803
+K 3
+src
+V 17
+dir k-1.0.r11/829
+K 6
+vendor
+V 17
+dir 10-1.0.r13/42
+K 9
+vendorsrc
+V 17
+dir 7-1.0.r1/3606
+END
+ENDREP
+id: 2-1.0.r13/516
+type: dir
+pred: 2-1.0.r12/591
+count: 8
+text: 13 194 309 309 00b7db127c477d2ebd5b75d406b765a3
+props: 11 1304 69 0 889c4eef9eb34260fc25fd5aa7c1342c
+cpath: /testSVN/trunk
+copyroot: 0 /
+minfo-cnt: 1
+minfo-here: y
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 19
+dir 13-1.0.r10/2035
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 18
+dir 17-1.0.r1/7674
+K 5
+trunk
+V 17
+dir 2-1.0.r13/516
+END
+ENDREP
+id: 0-1.0.r13/938
+type: dir
+pred: 0-1.0.r12/1014
+count: 12
+text: 13 744 181 181 b1bb1b8fb5366d272460e98dbbcd82a3
+cpath: /testSVN
+copyroot: 0 /
+minfo-cnt: 1
+
+PLAIN
+K 7
+testSVN
+V 17
+dir 0-1.0.r13/938
+END
+ENDREP
+id: 0.0.r13/1147
+type: dir
+pred: 0.0.r12/1225
+count: 13
+text: 13 1095 39 39 ca44952370680804584c3ceaded7b8d0
+cpath: /
+copyroot: 0 /
+minfo-cnt: 1
+
+10-1.0.t12-d modify-dir false true /testSVN/trunk/vendor
+
+
+1147 1293

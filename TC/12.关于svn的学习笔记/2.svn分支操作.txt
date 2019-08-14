@@ -1,0 +1,82 @@
+1、创建分支
+svn copy svn://localhost/1.tc_repertory/testSVN/trunk  svn://localhost/1.tc_repertory/testSVN/branches/RB-2.0.0-COS-6.10 --username=wyl --password=123 -m "从主干上创建一个分支 RB-2.0.0-COS-6.10 "
+
+2、切换分支
+svn switch svn://localhost/1.tc_repertory/testSVN/branches/RB-2.0.0-COS-6.10
+svn switch svn://localhost/1.tc_repertory/testSVN/trunk
+或者也可以切到版本库下：
+svn switch svn://localhost/1.tc_repertory/testSVN
+
+3、查看分支日志，查看创建分支后的日志，包括创建分支时的日志
+svn log --stop-on-copy
+
+4、可以在版本库目录进入 branches 或者 trunk 目录进行操作
+
+5、当用户A没有没有更新本地的副本，然后修改了本地与远程svn服务器公共文件后，提交时会报错
+认证领域: <svn://localhost:3690> My First Repository
+“kfz”的密码: 
+正在发送       src/array.c
+传输文件数据.svn: 提交失败(细节如下): 
+svn: 文件 “/testSVN/branches/RB-2.0.0-COS-6.10/src/project0/src/array.c” 已经过时
+此时需要svn update
+
+6、svn up，将svn服务器上的代码更新到本地副本，此时可能会产生冲突
+在 “array.c” 中发现冲突。
+选择: (p) 推迟，(df) 显示全部差异，(e) 编辑,
+        (mc) 我的版本, (tc) 他人的版本,
+        (s) 显示全部选项: df
+这里我们查看冲突，然后选择p 推迟
+此时会新产生3个文件，列出这文件本修改过的版本
+array.c.mine  array.c.r2  array.c.r5
+*.mine：是本次我就该的文件内容
+*.r2：是历史版本2的文件内容
+*.r5：是历史版本5的文件内容
+
+7、此时打开array.c文件，开到冲突标记
+<<< .mine
+本次我的修改
+=====
+svn最新版本的修改，即svn版本5的修改
+>>> .r5
+我们需要兼顾svn上的与自己的内容，合理解决好冲突
+
+8、修改好冲突文件后，告诉svn已经解决完毕
+svn resolve --accept working array.c ：将当前拷贝即array.c作为最后提交的版本
+其他参数说明：
+base：在更新工作副本之前，请选择作为基本修订的文件。也就是说，在进行最新编辑之前签出的文件
+working：假设您已经手动处理了冲突解决，请选择文件当前所在工作副本中的版本
+mine-full：在运行svn update之前立即用文件副本解决所有冲突文件。
+theirs-full：使用运行svn update时从服务器获取的文件副本解决所有冲突文件
+mine-conflict：冲突的部分以本地修改为准
+theirs-conflict ：冲突的部分以服务器端修改为准
+
+9、最后将解决完冲突的文件上传到svn服务器
+svn commit -m "Updated array.c" --username=wyl --password=123
+
+10、使用svn revert 取消变更，没有提交前回复到与svn服务器上最新的版本
+svn revert array.c 
+
+11、回退到旧版本
+[root@yinling src]# svn merge 9:7 array.c 
+svn: 工作副本的合并来源需要指定版本
+[root@yinling src]# svn merge -r 9:7 array.c 
+备注：版本回退，很可能会造成文件冲突
+
+12、列出文件具体某一行某版本某人的修改记录
+svn blame array.c
+列出版本2之前的修改记录，包含版本2
+svn blame -r 2 array.c
+
+13、分支合并
+在trunk目录下，将新已开发好的分支RB-2.0.0-COS-6.10合并到主干
+svn merge svn://localhost/1.tc_repertory/testSVN/branches/RB-2.0.0-COS-6.10
+svn commit -m "RB-2.0.0-COS-6.10分支合并到trunk"
+
+14、分支删除
+svn delete svn://localhost/1.tc_repertory/testSVN/branches/RB-2.0.0-COS-6.10
+
+
+
+
+
+

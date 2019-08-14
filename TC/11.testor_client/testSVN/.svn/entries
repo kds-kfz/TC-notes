@@ -1,0 +1,77 @@
+10
+
+dir
+1
+svn://localhost/3.tc_beijin_repertory/testSVN
+svn://localhost/3.tc_beijin_repertory
+
+
+
+2019-07-26T08:25:09.941128Z
+1
+kfz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bcf367e7-7281-4557-8792-92ab7ed7dedc
+
+svn初始化构建
+dir
+
+trunk
+dir
+
+branches
+dir
+
+binexport
+dir
+
+intro
+file
+
+
+
+
+2019-07-26T08:33:29.436199Z
+bd093e7b306f28c877e2e1da930ed020
+2019-07-26T08:25:09.941128Z
+1
+kfz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6056
+
+tags
+dir
+

@@ -1,0 +1,73 @@
+id: 2-1.0-7.r7/0
+type: dir
+pred: 2-1.0.r6/1660
+count: 6
+text: 6 1337 310 310 a8eb0f5c0e6b0651fcaca95c1560d987
+cpath: /testSVN/branches/RB-2.0.0-COS-6.10
+copyfrom: 6 /testSVN/trunk
+
+PLAIN
+K 17
+RB-2.0.0-COS-6.10
+V 16
+dir 2-1.0-7.r7/0
+END
+ENDREP
+id: 13-1.0.r7/243
+type: dir
+pred: 13-1.0.r1/7336
+count: 1
+text: 7 181 49 49 36c733f91da29a74fca4914ca2c9e6c2
+cpath: /testSVN/branches
+copyroot: 0 /
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 17
+dir 13-1.0.r7/243
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 18
+dir 17-1.0.r1/7674
+K 5
+trunk
+V 17
+dir 2-1.0.r6/1660
+END
+ENDREP
+id: 0-1.0.r7/584
+type: dir
+pred: 0-1.0.r6/2001
+count: 6
+text: 7 392 179 179 6babd30f53350d48de8ede89d229fc04
+cpath: /testSVN
+copyroot: 0 /
+
+PLAIN
+K 7
+testSVN
+V 16
+dir 0-1.0.r7/584
+END
+ENDREP
+id: 0.0.r7/775
+type: dir
+pred: 0.0.r6/2195
+count: 7
+text: 7 724 38 38 36b01242391ef0e6aa47ee2b7e6a7a15
+cpath: /
+copyroot: 0 /
+
+2-1._0.t6-7 add-dir false false /testSVN/branches/RB-2.0.0-COS-6.10
+6 /testSVN/trunk
+
+775 902

@@ -1,0 +1,6 @@
+K 13
+svn:externals
+V 75
+TC_testVendor-src svn://192.168.30.219/testVendor/tags/REL-2.0.1-UBT-16.04
+
+END

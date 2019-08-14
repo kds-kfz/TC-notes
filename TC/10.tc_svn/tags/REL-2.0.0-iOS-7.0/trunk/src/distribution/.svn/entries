@@ -1,0 +1,37 @@
+10
+
+dir
+873
+svn://192.168.30.219/testSVN/tags/REL-2.0.0-iOS-7.0/trunk/src/distribution
+svn://192.168.30.219/testSVN
+
+
+
+2019-07-23T02:39:10.723113Z
+797
+testor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+01aa90a8-ee3a-416f-89ad-5b7733e9b3fd
+
+include
+dir
+
+doc
+dir
+
+lib
+dir
+

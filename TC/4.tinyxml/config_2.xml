@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+    <result>
+        <data>
+            <dataUuid>id</dataUuid>
+            <dataName>NAME</dataName>
+            <dataBound>SHP</dataBound>
+        </data>
+        <data>
+            <dataUuid>数据id</dataUuid>
+            <dataName>数据名</dataName>
+            <dataBound>数据边框</dataBound>
+        </data>
+        <data>
+            <dataUuid>数据id</dataUuid>
+            <dataName>数据名</dataName>
+            <dataBound>数据边框</dataBound>
+        </data>
+        <data>
+            <dataUuid><![CDATA[80522c3c-083b-4a0d-af23-956a8ca6af84]]></dataUuid>
+            <dataName><![CDATA[E119D4_N28D3_20170429_ZY302_MUX_DOM]]></dataName>
+            <dataBound><![CDATA[POLYGON((119.193 28.5701,119.7238 28.4729,119.6136 28.0084,119.0852 28.1055))]]></dataBound>
+        </data>
+    </result>
+    <target>
+        <targetBound><![CDATA[POLYGON((119.193 28.5701,119.7238 28.4729,119.6136 28.0084,119.0852 28.1055))]]></targetBound>
+    </target>
+</params>

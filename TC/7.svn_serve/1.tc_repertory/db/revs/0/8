@@ -1,0 +1,61 @@
+PLAIN
+END
+ENDREP
+id: 13-1.0.r8/17
+type: dir
+pred: 13-1.0.r7/243
+count: 2
+text: 8 0 4 4 2d2977d1c96f487abe4a1e202dd03b4e
+cpath: /testSVN/branches
+copyroot: 0 /
+
+PLAIN
+K 9
+binexport
+V 18
+dir 14-1.0.r1/7414
+K 8
+branches
+V 16
+dir 13-1.0.r8/17
+K 5
+intro
+V 19
+file 15-1.0.r1/7493
+K 4
+tags
+V 18
+dir 17-1.0.r1/7674
+K 5
+trunk
+V 17
+dir 2-1.0.r6/1660
+END
+ENDREP
+id: 0-1.0.r8/351
+type: dir
+pred: 0-1.0.r7/584
+count: 7
+text: 8 160 178 178 ddc115eb079176aff8523e176317baf3
+cpath: /testSVN
+copyroot: 0 /
+
+PLAIN
+K 7
+testSVN
+V 16
+dir 0-1.0.r8/351
+END
+ENDREP
+id: 0.0.r8/541
+type: dir
+pred: 0.0.r7/775
+count: 8
+text: 8 490 38 38 377ed134d89837428347cd0736487ecc
+cpath: /
+copyroot: 0 /
+
+2-1.0-7.r7/0 delete-dir false false /testSVN/branches/RB-2.0.0-COS-6.10
+
+
+541 667
